@@ -1,20 +1,22 @@
 # JSON Schema to OpenAPI Schema
 
+**This is a modified version of [@openapi-contrib/json-schema-to-openapi-schema](https://github.com/openapi-contrib/openapi-schema-to-json-schema) with some tweaks to integrate with the JSON Schemas that Ecogy uses**
+
 A little NodeJS package to convert JSON Schema to a [OpenAPI Schema Object](http://spec.openapis.org/oas/v3.0.3.html#schema-object).
 
 [![Treeware](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=Treeware&query=%24.total&url=https%3A%2F%2Fpublic.offset.earth%2Fusers%2Ftreeware%2Ftrees)](https://treeware.earth)
 
 ## Features
 
-* converts JSON Schema Draft 04 to OpenAPI 3.0 Schema Object
-* switches `type: ['foo', 'null']` to `type: foo` and `nullable: true`
-* supports deep structures with nested `allOf`s etc.
-* switches `patternProperties` to `x-patternProperties`
-* converts `dependencies` to an allOf + oneOf OpenAPI-valid equivalent
+- converts JSON Schema Draft 04 to OpenAPI 3.0 Schema Object
+- switches `type: ['foo', 'null']` to `type: foo` and `nullable: true`
+- supports deep structures with nested `allOf`s etc.
+- switches `patternProperties` to `x-patternProperties`
+- converts `dependencies` to an allOf + oneOf OpenAPI-valid equivalent
 
 ## Installation
 
-``` shell
+```shell
 npm install --save @openapi-contrib/json-schema-to-openapi-schema
 ```
 
@@ -25,19 +27,18 @@ Requires NodeJS v10 or greater.
 Here's a small example to get the idea:
 
 ```js
-const convert = require('@openapi-contrib/json-schema-to-openapi-schema');
+const convert = require("@openapi-contrib/json-schema-to-openapi-schema");
 
 const schema = {
-  '$schema': 'http://json-schema.org/draft-04/schema#',
-  type: ['string', 'null'],
-  format: 'date-time',
+  $schema: "http://json-schema.org/draft-04/schema#",
+  type: ["string", "null"],
+  format: "date-time",
 };
 
 (async () => {
   const convertedSchema = await convert(schema);
   console.log(convertedSchema);
 })();
-
 ```
 
 The example prints out
@@ -117,8 +118,8 @@ This package is [Treeware](https://treeware.earth). If you use it in production,
 - [All Contributors][link-contributors]
 
 [mikunn]: https://github.com/mikunn
-[WeWork]: https://github.com/wework
-[Stoplight]: https://stoplight.io/
-[Phil Sturgeon]: https://github.com/philsturgeon
+[wework]: https://github.com/wework
+[stoplight]: https://stoplight.io/
+[phil sturgeon]: https://github.com/philsturgeon
 [openapi-schema-to-json-schema]: https://github.com/openapi-contrib/openapi-schema-to-json-schema
 [link-contributors]: https://github.com/openapi-contrib/json-schema-to-openapi-schema/graphs/contributors
