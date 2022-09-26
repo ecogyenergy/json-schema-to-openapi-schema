@@ -121,27 +121,7 @@ function convertDependencies(schema) {
   }
 
   for (const key in deps) {
-    const foo = {
-      oneOf: [
-        {
-          not: {
-            required: [key],
-          },
-        },
-        {
-          required: [].concat(key, deps[key]),
-        },
-      ],
-    };
-
-    if (typeof deps[key] === "object") {
-      foo.oneOf[1].required = [key];
-      const dependencyObject = deps[key];
-      for (const dependencyKey in dependencyObject) {
-        foo.oneOf[1][dependencyKey] = dependencyObject[dependencyKey];
-      }
-    }
-    schema.allOf.push(foo);
+    schema.allOf.push(deps[key]);
   }
   return schema;
 }
