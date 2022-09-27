@@ -133,14 +133,6 @@ function convertDependencies(schema) {
         },
       ],
     };
-
-    if (typeof deps[key] === "object") {
-      foo.oneOf[1].required = [key];
-      const dependencyObject = deps[key];
-      for (const dependencyKey in dependencyObject) {
-        foo.oneOf[1][dependencyKey] = dependencyObject[dependencyKey];
-      }
-    }
     schema.allOf.push(foo);
   }
   return schema;
@@ -278,7 +270,7 @@ const resolver = new Resolver({
   parseResolveResult(opts) {
     try {
       opts.result = parse(opts.result);
-    } catch (e) {
+    } catch {
       // let's carry on
     }
 
@@ -291,7 +283,7 @@ const oasExtensionPrefix = "x-";
 // TODO: having definitions inside an oas3 schema isn't exactly valid,
 // maybe it is an idea to extract and split them into multiple oas3 schemas and reference to them.
 // For now leaving as is.
-const allowedKeywords = ["$ref" /*, "definitions"*/].concat(
+const allowedKeywords = ["$ref", "definitions"].concat(
   Object.keys(oas3schema.definitions.Schema.properties)
 );
 
