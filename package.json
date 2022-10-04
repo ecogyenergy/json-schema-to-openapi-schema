@@ -1,6 +1,6 @@
 {
   "name": "@ecogy-energy/json-schema-to-openapi-schema",
-  "version": "0.0.0-development",
+  "version": "0.0.0",
   "description": "Converts a JSON Schema to OpenAPI Schema Object",
   "main": "index.js",
   "bin": {
