@@ -121,19 +121,7 @@ function convertDependencies(schema) {
   }
 
   for (const key in deps) {
-    const foo = {
-      oneOf: [
-        {
-          not: {
-            required: [key],
-          },
-        },
-        {
-          required: [].concat(key, deps[key]),
-        },
-      ],
-    };
-    schema.allOf.push(foo);
+    schema.allOf.push(deps[key]);
   }
   return schema;
 }
